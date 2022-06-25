@@ -23,7 +23,7 @@ foreach ($s in $SID) {
         UserSID = $Prof.PSChildName
         UserName = $User
     }
-    if ($obj.UserSID.Length -gt 25) {
+    if ($obj.UserSID.Length -gt 25 -and $User_LoggedIn -contains $obj.UserSID) {
         $Col_SID += $obj
     }
 }
