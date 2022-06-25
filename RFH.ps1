@@ -10,8 +10,8 @@
 
 # returns a list of SIDs belonging to only the users logged in (includes domain admin)
 $User_LoggedIn = (Get-ChildItem "REGISTRY::HKU\" -ErrorAction SilentlyContinue |
-    Where-Object {$_.Name.Length -gt 25 -and $_.Name -notlike '*_Classes'}).Name
-$User_LoggedIn = $User_LoggedIn | ForEach-Object {$_.Split('\')[1]}
+    Where-Object { $_.Name.Length -gt 25 -and $_.Name -notlike '*_Classes' }).Name
+$User_LoggedIn = $User_LoggedIn | ForEach-Object { $_.Split('\')[1] }
 
 # get usernames for each SID found on the computer for comparison later
 $SID = Get-ChildItem 'REGISTRY::HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\' | Select-Object -ExpandProperty Name
@@ -20,11 +20,12 @@ foreach ($s in $SID) {
     $Prof = Get-ItemProperty -Path "REGISTRY::$s" -Name "ProfileImagePath"
     $User = ($Prof.ProfileImagePath.ToString()).Split('\')[-1]
     $obj = [PSCustomObject]@{
-        UserSID = $Prof.PSChildName
+        UserSID  = $Prof.PSChildName
         UserName = $User
     }
     if ($obj.UserSID.Length -gt 25 -and $User_LoggedIn -contains $obj.UserSID) {
         $Col_SID += $obj
     }
 }
-Write-Output $Col_SID
+
+# foreach logged in user, return value of the Desktop path
