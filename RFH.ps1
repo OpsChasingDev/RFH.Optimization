@@ -32,7 +32,9 @@ foreach ($s in $SID) {
 # (Get-ItemProperty -Path "Registry::HKEY_USERS\$($using:CurrentUserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\" -Name Desktop -ErrorAction SilentlyContinue).Desktop
 
 $DesktopPathSplat = @{
-    Path = 
-    Name = 
-    ErrorAction = 
+    Path = "REGISTRY::HKU\$s\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
+    Name = "Desktop"
+    ErrorAction = "SilentlyContinue"
 }
+
+$DesktopPath = (Get-ItemProperty @DesktopPathSplat).Name
