@@ -23,7 +23,9 @@ foreach ($s in $SID) {
         UserSID = $Prof.PSChildName
         UserName = $User
     }
-    $Col_SID += $obj
+    if ($obj.UserSID.Length -gt 25) {
+        $Col_SID += $obj
+    }
 }
 Write-Output $Col_SID
 
