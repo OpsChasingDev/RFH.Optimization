@@ -36,6 +36,6 @@ foreach ($s in $Col_SID) {
         Name = "Desktop"
         ErrorAction = "SilentlyContinue"
     }
-    $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Name
+    $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
     Write-Output $DesktopPath
 }
