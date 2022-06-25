@@ -8,3 +8,4 @@
         - library path value
 #>
 
+Get-ChildItem "REGISTRY::HKU\" -ErrorAction SilentlyContinue
