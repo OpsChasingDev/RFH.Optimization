@@ -15,6 +15,7 @@ $User_LoggedIn = $User_LoggedIn | ForEach-Object {$_.Split('\')[1]}
 
 # get usernames for each SID found on the computer for comparison later
 $SID = Get-ChildItem 'REGISTRY::HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\' | Select-Object -ExpandProperty Name
+$Col_SID = @()
 foreach ($s in $SID) {
     $Prof = Get-ItemProperty -Path "REGISTRY::$s" -Name "ProfileImagePath"
     $User = ($Prof.ProfileImagePath.ToString()).Split('\')[-1]
@@ -22,8 +23,8 @@ foreach ($s in $SID) {
         UserSID = $Prof.PSChildName
         UserName = $User
     }
-    Write-Output $obj
+    $Col_SID += $obj
 }
-
+Write-Output $Col_SID
 
 # match each returned SID with its corresponding username
