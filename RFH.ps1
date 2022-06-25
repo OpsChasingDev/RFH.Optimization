@@ -28,5 +28,3 @@ foreach ($s in $SID) {
     }
 }
 Write-Output $Col_SID
-
-# match each returned SID with its corresponding username
