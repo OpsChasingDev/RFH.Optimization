@@ -9,5 +9,6 @@
 #>
 
 $User_LoggedIn = (Get-ChildItem "REGISTRY::HKU\" -ErrorAction SilentlyContinue |
-    Where-Object {$_.Name.Length -gt 25 -and $_.Name -notlike '*_Classes'}).Name.Split('\')[1]
+    Where-Object {$_.Name.Length -gt 25 -and $_.Name -notlike '*_Classes'}).Name
+$User_LoggedIn = $User_LoggedIn | ForEach-Object {$_.Split('\')[1]}
 Write-Output $User_LoggedIn    
