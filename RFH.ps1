@@ -8,7 +8,22 @@
         - library path value
 #>
 
+# returns a list of SIDs belonging to only the users logged in (includes domain admin)
 $User_LoggedIn = (Get-ChildItem "REGISTRY::HKU\" -ErrorAction SilentlyContinue |
     Where-Object {$_.Name.Length -gt 25 -and $_.Name -notlike '*_Classes'}).Name
 $User_LoggedIn = $User_LoggedIn | ForEach-Object {$_.Split('\')[1]}
-Write-Output $User_LoggedIn    
+
+# get usernames for each SID found on the computer for comparison later
+$SID = Get-ChildItem 'REGISTRY::HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\' | Select-Object -ExpandProperty Name
+foreach ($s in $SID) {
+    $Prof = Get-ItemProperty -Path "REGISTRY::$s" -Name "ProfileImagePath"
+    $User = ($Prof.ProfileImagePath.ToString()).Split('\')[-1]
+    $obj = [PSCustomObject]@{
+        UserSID = $Prof.PSChildName
+        UserName = $User
+    }
+    Write-Output $obj
+}
+
+
+# match each returned SID with its corresponding username
