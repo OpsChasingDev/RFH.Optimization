@@ -29,3 +29,10 @@ foreach ($s in $SID) {
 }
 
 # foreach logged in user, return value of the Desktop path
+# (Get-ItemProperty -Path "Registry::HKEY_USERS\$($using:CurrentUserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\" -Name Desktop -ErrorAction SilentlyContinue).Desktop
+
+$DesktopPathSplat = @{
+    Path = 
+    Name = 
+    ErrorAction = 
+}
