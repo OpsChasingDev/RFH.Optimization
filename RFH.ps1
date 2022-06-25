@@ -1,5 +1,7 @@
 <#
-
+- conditionalize the operation of finding the desktop value
+- the above item will be used respectively for each library checked based on user input
+- formulate advanced function features to start invoking properly on machines with parameters
 #>
 
 # stores a list of SIDs belonging to only the users logged in (includes domain admin)
