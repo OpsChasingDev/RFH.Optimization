@@ -25,15 +25,15 @@ foreach ($s in $SID) {
 # foreach logged in user, return value of the Desktop path
 foreach ($s in $Col_SID) {
     $DesktopPathSplat = @{
-        Path = "REGISTRY::HKU\$($s.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
-        Name = "Desktop"
+        Path        = "REGISTRY::HKU\$($s.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
+        Name        = "Desktop"
         ErrorAction = "SilentlyContinue"
     }
     $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
     $DesktopMemberSplat = @{
         MemberType = "NoteProperty"
-        Name = "Desktop"
-        Value = $DesktopPath
+        Name       = "Desktop"
+        Value      = $DesktopPath
     }
     $s | Add-Member @DesktopMemberSplat
     Write-Output $s
