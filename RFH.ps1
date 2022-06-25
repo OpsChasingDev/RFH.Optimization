@@ -37,5 +37,11 @@ foreach ($s in $Col_SID) {
         ErrorAction = "SilentlyContinue"
     }
     $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
-    Write-Output $DesktopPath
+    $DesktopMemberSplat = @{
+        MemberType = "NoteProperty"
+        Name = "Desktop"
+        Value = $DesktopPath
+    }
+    $s | Add-Member @DesktopMemberSplat
+    Write-Output $s
 }
