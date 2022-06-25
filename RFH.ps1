@@ -9,4 +9,4 @@
 #>
 
 $User_LoggedIn = (Get-ChildItem "REGISTRY::HKU\" -ErrorAction SilentlyContinue |
-    Where-Object {$_.Name.Length -gt 25 -and $_.Name -notlike '*_Classes'}).Name
+    Where-Object {$_.Name.Length -gt 25 -and $_.Name -notlike '*_Classes'}).Name.Split('\')[1]
