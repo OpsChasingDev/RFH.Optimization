@@ -1,19 +1,13 @@
 <#
-- each machine has the following logic invoked:
-    - checks the registry to collect all currently logged in users
-    - checks each logged in user's libraries
-    - returns a psobject containing members to describe:
-        - ComputerName
-        - User
-        - library path value
+
 #>
 
-# returns a list of SIDs belonging to only the users logged in (includes domain admin)
+# stores a list of SIDs belonging to only the users logged in (includes domain admin)
 $User_LoggedIn = (Get-ChildItem "REGISTRY::HKU\" -ErrorAction SilentlyContinue |
     Where-Object { $_.Name.Length -gt 25 -and $_.Name -notlike '*_Classes' }).Name
 $User_LoggedIn = $User_LoggedIn | ForEach-Object { $_.Split('\')[1] }
 
-# get usernames for each SID found on the computer for comparison later
+# store usernames for each SID found on the computer in a custom object collection for comparison later
 $SID = Get-ChildItem 'REGISTRY::HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\' | Select-Object -ExpandProperty Name
 $Col_SID = @()
 foreach ($s in $SID) {
@@ -29,7 +23,6 @@ foreach ($s in $SID) {
 }
 
 # foreach logged in user, return value of the Desktop path
-# (Get-ItemProperty -Path "Registry::HKEY_USERS\$($using:CurrentUserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\" -Name Desktop -ErrorAction SilentlyContinue).Desktop
 foreach ($s in $Col_SID) {
     $DesktopPathSplat = @{
         Path = "REGISTRY::HKU\$($s.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
