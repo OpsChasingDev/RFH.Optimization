@@ -208,18 +208,18 @@ function Get-RFH {
                 $obj | Add-Member @SearchesMemberSplat
             }
             if ($($using:Library) -eq "G") {
-                $DesktopPathSplat = @{
+                $SavedGamesPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
-                    Name        = "Desktop"
+                    Name        = "{4C5C32FF-BB9D-43B0-B5B4-2D72E54EAAA4}"
                     ErrorAction = "SilentlyContinue"
                 }
-                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
-                $DesktopMemberSplat = @{
+                $SavedGamesPath = (Get-ItemProperty @SavedGamesPathSplat)."{4C5C32FF-BB9D-43B0-B5B4-2D72E54EAAA4}"
+                $SavedGamesMemberSplat = @{
                     MemberType = "NoteProperty"
-                    Name       = "Desktop"
-                    Value      = $DesktopPath
+                    Name       = "SavedGames"
+                    Value      = $SavedGamesPath
                 }
-                $obj | Add-Member @DesktopMemberSplat
+                $obj | Add-Member @SavedGamesMemberSplat
             }
             Write-Output $obj
         }
