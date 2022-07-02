@@ -194,18 +194,18 @@ function Get-RFH {
                 $obj | Add-Member @LinksMemberSplat
             }
             if ($($using:Library) -eq "H") {
-                $DesktopPathSplat = @{
+                $SearchesPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
-                    Name        = "Desktop"
+                    Name        = "{7D1D3A04-DEBB-4115-95CF-2F29DA2920DA}"
                     ErrorAction = "SilentlyContinue"
                 }
-                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
-                $DesktopMemberSplat = @{
+                $SearchesPath = (Get-ItemProperty @SearchesPathSplat)."{7D1D3A04-DEBB-4115-95CF-2F29DA2920DA}"
+                $SearchesMemberSplat = @{
                     MemberType = "NoteProperty"
-                    Name       = "Desktop"
-                    Value      = $DesktopPath
+                    Name       = "Searches"
+                    Value      = $SearchesPath
                 }
-                $obj | Add-Member @DesktopMemberSplat
+                $obj | Add-Member @SearchesMemberSplat
             }
             if ($($using:Library) -eq "G") {
                 $DesktopPathSplat = @{
