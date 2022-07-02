@@ -3,7 +3,7 @@
 - the above item will be used respectively for each library checked based on user input
 - formulate advanced function features to start invoking properly on machines with parameters
 #>
-
+[CmdletBinding()]
 param (
     [Parameter(Mandatory)]
     [string[]]$ComputerName
