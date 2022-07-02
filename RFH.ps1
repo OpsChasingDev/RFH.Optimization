@@ -37,8 +37,9 @@ function Get-RFH {
             }
         }
         
-        # foreach logged in user, return value of the Desktop path
+        # foreach logged in user, check the libraries specified
         foreach ($obj in $colUser) {
+            # Desktop
             if ($($using:Library) -eq "D") {
                 $DesktopPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
@@ -53,6 +54,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @DesktopMemberSplat
             }
+            # Documents
             if ($($using:Library) -eq "O") {
                 $DocumentsPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
@@ -67,6 +69,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @DocumentsMemberSplat
             }
+            # Downloads
             if ($($using:Library) -eq "W") {
                 $DownloadsPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
@@ -81,6 +84,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @DownloadsMemberSplat
             }
+            # Music
             if ($($using:Library) -eq "M") {
                 $MusicPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
@@ -95,6 +99,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @MusicMemberSplat
             }
+            # Pictures
             if ($($using:Library) -eq "P") {
                 $PicturesPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
@@ -109,6 +114,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @PicturesMemberSplat
             }
+            # Video
             if ($($using:Library) -eq "V") {
                 $VideoPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
@@ -123,6 +129,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @VideoMemberSplat
             }
+            # Favorites
             if ($($using:Library) -eq "F") {
                 $FavoritesPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
@@ -137,6 +144,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @FavoritesMemberSplat
             }
+            # AppData (roaming)
             if ($($using:Library) -eq "A") {
                 $AppDataPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
@@ -151,6 +159,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @AppDataMemberSplat
             }
+            # Start Menu
             if ($($using:Library) -eq "S") {
                 $StartMenuPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
@@ -165,6 +174,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @StartMenuMemberSplat
             }
+            # Contacts
             if ($($using:Library) -eq "C") {
                 $ContactsPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
@@ -179,6 +189,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @ContactsMemberSplat
             }
+            # Links
             if ($($using:Library) -eq "L") {
                 $LinksPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
@@ -193,6 +204,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @LinksMemberSplat
             }
+            # Searches
             if ($($using:Library) -eq "H") {
                 $SearchesPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
@@ -207,6 +219,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @SearchesMemberSplat
             }
+            # Saved Games
             if ($($using:Library) -eq "G") {
                 $SavedGamesPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
