@@ -8,7 +8,11 @@ function Get-RFH {
     param (
         [Parameter(Mandatory = $true)]
         [string[]]$ComputerName,
-    
+        
+        [Parameter(Mandatory = $true)]
+        [ValidateSet("D", "O", "W", "M", "P", "V", "F", "A", "S", "C", "L", "H", "G")]
+        [string[]]$Library,
+
         [switch]$ShowError
     )
     Invoke-Command -ComputerName $ComputerName -ErrorAction SilentlyContinue -ErrorVariable InvokeError {
@@ -34,21 +38,23 @@ function Get-RFH {
         
         # foreach logged in user, return value of the Desktop path
         foreach ($obj in $colUser) {
-            $DesktopPathSplat = @{
-                Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
-                Name        = "Desktop"
-                ErrorAction = "SilentlyContinue"
+            if ($($using:Library) -eq "D") {
+                $DesktopPathSplat = @{
+                    Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
+                    Name        = "Desktop"
+                    ErrorAction = "SilentlyContinue"
+                }
+                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
+                $DesktopMemberSplat = @{
+                    MemberType = "NoteProperty"
+                    Name       = "Desktop"
+                    Value      = $DesktopPath
+                }
+                $obj | Add-Member @DesktopMemberSplat
             }
-            $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
-            $DesktopMemberSplat = @{
-                MemberType = "NoteProperty"
-                Name       = "Desktop"
-                Value      = $DesktopPath
-            }
-            $obj | Add-Member @DesktopMemberSplat
             Write-Output $obj
         }
     }
     
-    if ($ShowError) {Write-Output $InvokeError}
+    if ($ShowError) { Write-Output $InvokeError }
 }
