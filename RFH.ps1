@@ -180,18 +180,18 @@ function Get-RFH {
                 $obj | Add-Member @ContactsMemberSplat
             }
             if ($($using:Library) -eq "L") {
-                $DesktopPathSplat = @{
+                $LinksPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
-                    Name        = "Desktop"
+                    Name        = "{BFB9D5E0-C6A9-404C-B2B2-AE6DB6AF4968}"
                     ErrorAction = "SilentlyContinue"
                 }
-                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
-                $DesktopMemberSplat = @{
+                $LinksPath = (Get-ItemProperty @LinksPathSplat)."{BFB9D5E0-C6A9-404C-B2B2-AE6DB6AF4968}"
+                $LinksMemberSplat = @{
                     MemberType = "NoteProperty"
-                    Name       = "Desktop"
-                    Value      = $DesktopPath
+                    Name       = "Links"
+                    Value      = $LinksPath
                 }
-                $obj | Add-Member @DesktopMemberSplat
+                $obj | Add-Member @LinksMemberSplat
             }
             if ($($using:Library) -eq "H") {
                 $DesktopPathSplat = @{
