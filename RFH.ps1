@@ -166,18 +166,18 @@ function Get-RFH {
                 $obj | Add-Member @StartMenuMemberSplat
             }
             if ($($using:Library) -eq "C") {
-                $DesktopPathSplat = @{
+                $ContactsPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
-                    Name        = "Desktop"
+                    Name        = "{56784854-C6CB-462B-8169-88E350ACB882}"
                     ErrorAction = "SilentlyContinue"
                 }
-                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
-                $DesktopMemberSplat = @{
+                $ContactsPath = (Get-ItemProperty @ContactsPathSplat)."{56784854-C6CB-462B-8169-88E350ACB882}"
+                $ContactsMemberSplat = @{
                     MemberType = "NoteProperty"
-                    Name       = "Desktop"
-                    Value      = $DesktopPath
+                    Name       = "Contacts"
+                    Value      = $ContactsPath
                 }
-                $obj | Add-Member @DesktopMemberSplat
+                $obj | Add-Member @ContactsMemberSplat
             }
             if ($($using:Library) -eq "L") {
                 $DesktopPathSplat = @{
