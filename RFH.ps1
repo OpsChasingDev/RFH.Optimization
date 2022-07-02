@@ -4,7 +4,11 @@
 - formulate advanced function features to start invoking properly on machines with parameters
 #>
 
-Invoke-Command -ComputerName 'sl-computer-001' {
+param (
+    [Parameter(Mandatory)]
+    [string[]]$ComputerName
+)
+Invoke-Command -ComputerName $ComputerName {
     # stores a list of SIDs belonging to only the users logged in (includes domain admin)
     $User_LoggedIn = (Get-ChildItem "REGISTRY::HKU\" -ErrorAction SilentlyContinue |
         Where-Object { $_.Name.Length -gt 25 -and $_.Name -notlike '*_Classes' }).Name
