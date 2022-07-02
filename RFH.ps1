@@ -9,7 +9,8 @@ function Get-RFH {
         [Parameter(Mandatory = $true)]
         [string[]]$ComputerName,
         
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true,
+            ValueFromPipeline = $true)]
         [ValidateSet("D", "O", "W", "M", "P", "V", "F", "A", "S", "C", "L", "H", "G")]
         [string[]]$Library,
 
