@@ -53,7 +53,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @DesktopMemberSplat
             }
-            if ($($using:Library) -eq "D") {
+            if ($($using:Library) -eq "O") {
                 $DesktopPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
                     Name        = "Desktop"
@@ -67,7 +67,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @DesktopMemberSplat
             }
-            if ($($using:Library) -eq "D") {
+            if ($($using:Library) -eq "W") {
                 $DesktopPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
                     Name        = "Desktop"
@@ -81,7 +81,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @DesktopMemberSplat
             }
-            if ($($using:Library) -eq "D") {
+            if ($($using:Library) -eq "M") {
                 $DesktopPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
                     Name        = "Desktop"
@@ -95,7 +95,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @DesktopMemberSplat
             }
-            if ($($using:Library) -eq "D") {
+            if ($($using:Library) -eq "P") {
                 $DesktopPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
                     Name        = "Desktop"
@@ -109,7 +109,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @DesktopMemberSplat
             }
-            if ($($using:Library) -eq "D") {
+            if ($($using:Library) -eq "V") {
                 $DesktopPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
                     Name        = "Desktop"
@@ -123,7 +123,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @DesktopMemberSplat
             }
-            if ($($using:Library) -eq "D") {
+            if ($($using:Library) -eq "F") {
                 $DesktopPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
                     Name        = "Desktop"
@@ -137,7 +137,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @DesktopMemberSplat
             }
-            if ($($using:Library) -eq "D") {
+            if ($($using:Library) -eq "A") {
                 $DesktopPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
                     Name        = "Desktop"
@@ -151,7 +151,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @DesktopMemberSplat
             }
-            if ($($using:Library) -eq "D") {
+            if ($($using:Library) -eq "S") {
                 $DesktopPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
                     Name        = "Desktop"
@@ -165,7 +165,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @DesktopMemberSplat
             }
-            if ($($using:Library) -eq "D") {
+            if ($($using:Library) -eq "C") {
                 $DesktopPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
                     Name        = "Desktop"
@@ -179,7 +179,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @DesktopMemberSplat
             }
-            if ($($using:Library) -eq "D") {
+            if ($($using:Library) -eq "L") {
                 $DesktopPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
                     Name        = "Desktop"
@@ -193,7 +193,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @DesktopMemberSplat
             }
-            if ($($using:Library) -eq "D") {
+            if ($($using:Library) -eq "H") {
                 $DesktopPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
                     Name        = "Desktop"
@@ -207,7 +207,7 @@ function Get-RFH {
                 }
                 $obj | Add-Member @DesktopMemberSplat
             }
-            if ($($using:Library) -eq "D") {
+            if ($($using:Library) -eq "G") {
                 $DesktopPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
                     Name        = "Desktop"
