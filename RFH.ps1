@@ -138,18 +138,18 @@ function Get-RFH {
                 $obj | Add-Member @FavoritesMemberSplat
             }
             if ($($using:Library) -eq "A") {
-                $DesktopPathSplat = @{
+                $AppDataPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
-                    Name        = "Desktop"
+                    Name        = "AppData"
                     ErrorAction = "SilentlyContinue"
                 }
-                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
-                $DesktopMemberSplat = @{
+                $AppDataPath = (Get-ItemProperty @AppDataPathSplat).AppData
+                $AppDataMemberSplat = @{
                     MemberType = "NoteProperty"
-                    Name       = "Desktop"
-                    Value      = $DesktopPath
+                    Name       = "AppData"
+                    Value      = $AppDataPath
                 }
-                $obj | Add-Member @DesktopMemberSplat
+                $obj | Add-Member @AppDataMemberSplat
             }
             if ($($using:Library) -eq "S") {
                 $DesktopPathSplat = @{
