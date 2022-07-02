@@ -4,6 +4,7 @@
 #>
 function Get-RFH {
     [CmdletBinding()]
+    [Alias('Get-RedirectedFolderHealth')]
     param (
         [Parameter(Mandatory)]
         [string[]]$ComputerName,
