@@ -5,9 +5,11 @@
 [CmdletBinding()]
 param (
     [Parameter(Mandatory)]
-    [string[]]$ComputerName
+    [string[]]$ComputerName,
+
+    [switch]$ShowError
 )
-Invoke-Command -ComputerName $ComputerName {
+Invoke-Command -ComputerName $ComputerName -ErrorAction SilentlyContinue -ErrorVariable InvokeError {
     # stores a list of SIDs belonging to only the users logged in (includes domain admin)
     $User_LoggedIn = (Get-ChildItem "REGISTRY::HKU\" -ErrorAction SilentlyContinue |
         Where-Object { $_.Name.Length -gt 25 -and $_.Name -notlike '*_Classes' }).Name
@@ -45,3 +47,5 @@ Invoke-Command -ComputerName $ComputerName {
         Write-Output $obj
     }
 }
+
+if ($ShowError) {Write-Output $InvokeError}
