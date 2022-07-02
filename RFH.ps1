@@ -54,18 +54,18 @@ function Get-RFH {
                 $obj | Add-Member @DesktopMemberSplat
             }
             if ($($using:Library) -eq "O") {
-                $DesktopPathSplat = @{
+                $DocumentsPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
-                    Name        = "Desktop"
+                    Name        = "Personal"
                     ErrorAction = "SilentlyContinue"
                 }
-                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
-                $DesktopMemberSplat = @{
+                $DocumentsPath = (Get-ItemProperty @DocumentsPathSplat).Personal
+                $DocumentsMemberSplat = @{
                     MemberType = "NoteProperty"
-                    Name       = "Desktop"
-                    Value      = $DesktopPath
+                    Name       = "Documents"
+                    Value      = $DocumentsPath
                 }
-                $obj | Add-Member @DesktopMemberSplat
+                $obj | Add-Member @DocumentsMemberSplat
             }
             if ($($using:Library) -eq "W") {
                 $DesktopPathSplat = @{
