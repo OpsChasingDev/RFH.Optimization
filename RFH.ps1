@@ -1,6 +1,11 @@
 <#
-- conditionalize the operation of finding the desktop value
-- the above item will be used respectively for each library checked based on user input
+- add Get-RedirectedFolderGPO function to this file
+- test pipeline input for libraries
+- create a new function to take Get-RFH's output and generate reports based on user's wishes
+- add in verbose
+- add in logging
+- add in CBH
+
 #>
 function Get-RFH {
     [CmdletBinding()]
