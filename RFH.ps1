@@ -110,18 +110,18 @@ function Get-RFH {
                 $obj | Add-Member @PicturesMemberSplat
             }
             if ($($using:Library) -eq "V") {
-                $DesktopPathSplat = @{
+                $VideoPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
-                    Name        = "Desktop"
+                    Name        = "My Video"
                     ErrorAction = "SilentlyContinue"
                 }
-                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
-                $DesktopMemberSplat = @{
+                $VideoPath = (Get-ItemProperty @VideoPathSplat)."My Video"
+                $VideoMemberSplat = @{
                     MemberType = "NoteProperty"
-                    Name       = "Desktop"
-                    Value      = $DesktopPath
+                    Name       = "Video"
+                    Value      = $VideoPath
                 }
-                $obj | Add-Member @DesktopMemberSplat
+                $obj | Add-Member @VideoMemberSplat
             }
             if ($($using:Library) -eq "F") {
                 $DesktopPathSplat = @{
