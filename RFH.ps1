@@ -14,9 +14,11 @@ function Get-RFH {
         [ValidateSet("D", "O", "W", "M", "P", "V", "F", "A", "S", "C", "L", "H", "G")]
         [string[]]$Library,
 
+        [int]$ThrottleLimit = 32,
+
         [switch]$ShowError
     )
-    Invoke-Command -ComputerName $ComputerName -ErrorAction SilentlyContinue -ErrorVariable InvokeError {
+    Invoke-Command -ComputerName $ComputerName -ErrorAction SilentlyContinue -ErrorVariable InvokeError -ThrottleLimit $ThrottleLimit {
         # stores a list of SIDs belonging to only the users logged in (includes domain admin)
         $User_LoggedIn = (Get-ChildItem "REGISTRY::HKU\" -ErrorAction SilentlyContinue |
             Where-Object { $_.Name.Length -gt 25 -and $_.Name -notlike '*_Classes' }).Name
