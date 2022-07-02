@@ -124,18 +124,18 @@ function Get-RFH {
                 $obj | Add-Member @VideoMemberSplat
             }
             if ($($using:Library) -eq "F") {
-                $DesktopPathSplat = @{
+                $FavoritesPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
-                    Name        = "Desktop"
+                    Name        = "Favorites"
                     ErrorAction = "SilentlyContinue"
                 }
-                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
-                $DesktopMemberSplat = @{
+                $FavoritesPath = (Get-ItemProperty @FavoritesPathSplat).Favorites
+                $FavoritesMemberSplat = @{
                     MemberType = "NoteProperty"
-                    Name       = "Desktop"
-                    Value      = $DesktopPath
+                    Name       = "Favorites"
+                    Value      = $FavoritesPath
                 }
-                $obj | Add-Member @DesktopMemberSplat
+                $obj | Add-Member @FavoritesMemberSplat
             }
             if ($($using:Library) -eq "A") {
                 $DesktopPathSplat = @{
