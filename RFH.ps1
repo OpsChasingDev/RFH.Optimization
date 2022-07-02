@@ -53,6 +53,174 @@ function Get-RFH {
                 }
                 $obj | Add-Member @DesktopMemberSplat
             }
+            if ($($using:Library) -eq "D") {
+                $DesktopPathSplat = @{
+                    Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
+                    Name        = "Desktop"
+                    ErrorAction = "SilentlyContinue"
+                }
+                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
+                $DesktopMemberSplat = @{
+                    MemberType = "NoteProperty"
+                    Name       = "Desktop"
+                    Value      = $DesktopPath
+                }
+                $obj | Add-Member @DesktopMemberSplat
+            }
+            if ($($using:Library) -eq "D") {
+                $DesktopPathSplat = @{
+                    Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
+                    Name        = "Desktop"
+                    ErrorAction = "SilentlyContinue"
+                }
+                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
+                $DesktopMemberSplat = @{
+                    MemberType = "NoteProperty"
+                    Name       = "Desktop"
+                    Value      = $DesktopPath
+                }
+                $obj | Add-Member @DesktopMemberSplat
+            }
+            if ($($using:Library) -eq "D") {
+                $DesktopPathSplat = @{
+                    Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
+                    Name        = "Desktop"
+                    ErrorAction = "SilentlyContinue"
+                }
+                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
+                $DesktopMemberSplat = @{
+                    MemberType = "NoteProperty"
+                    Name       = "Desktop"
+                    Value      = $DesktopPath
+                }
+                $obj | Add-Member @DesktopMemberSplat
+            }
+            if ($($using:Library) -eq "D") {
+                $DesktopPathSplat = @{
+                    Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
+                    Name        = "Desktop"
+                    ErrorAction = "SilentlyContinue"
+                }
+                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
+                $DesktopMemberSplat = @{
+                    MemberType = "NoteProperty"
+                    Name       = "Desktop"
+                    Value      = $DesktopPath
+                }
+                $obj | Add-Member @DesktopMemberSplat
+            }
+            if ($($using:Library) -eq "D") {
+                $DesktopPathSplat = @{
+                    Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
+                    Name        = "Desktop"
+                    ErrorAction = "SilentlyContinue"
+                }
+                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
+                $DesktopMemberSplat = @{
+                    MemberType = "NoteProperty"
+                    Name       = "Desktop"
+                    Value      = $DesktopPath
+                }
+                $obj | Add-Member @DesktopMemberSplat
+            }
+            if ($($using:Library) -eq "D") {
+                $DesktopPathSplat = @{
+                    Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
+                    Name        = "Desktop"
+                    ErrorAction = "SilentlyContinue"
+                }
+                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
+                $DesktopMemberSplat = @{
+                    MemberType = "NoteProperty"
+                    Name       = "Desktop"
+                    Value      = $DesktopPath
+                }
+                $obj | Add-Member @DesktopMemberSplat
+            }
+            if ($($using:Library) -eq "D") {
+                $DesktopPathSplat = @{
+                    Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
+                    Name        = "Desktop"
+                    ErrorAction = "SilentlyContinue"
+                }
+                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
+                $DesktopMemberSplat = @{
+                    MemberType = "NoteProperty"
+                    Name       = "Desktop"
+                    Value      = $DesktopPath
+                }
+                $obj | Add-Member @DesktopMemberSplat
+            }
+            if ($($using:Library) -eq "D") {
+                $DesktopPathSplat = @{
+                    Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
+                    Name        = "Desktop"
+                    ErrorAction = "SilentlyContinue"
+                }
+                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
+                $DesktopMemberSplat = @{
+                    MemberType = "NoteProperty"
+                    Name       = "Desktop"
+                    Value      = $DesktopPath
+                }
+                $obj | Add-Member @DesktopMemberSplat
+            }
+            if ($($using:Library) -eq "D") {
+                $DesktopPathSplat = @{
+                    Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
+                    Name        = "Desktop"
+                    ErrorAction = "SilentlyContinue"
+                }
+                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
+                $DesktopMemberSplat = @{
+                    MemberType = "NoteProperty"
+                    Name       = "Desktop"
+                    Value      = $DesktopPath
+                }
+                $obj | Add-Member @DesktopMemberSplat
+            }
+            if ($($using:Library) -eq "D") {
+                $DesktopPathSplat = @{
+                    Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
+                    Name        = "Desktop"
+                    ErrorAction = "SilentlyContinue"
+                }
+                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
+                $DesktopMemberSplat = @{
+                    MemberType = "NoteProperty"
+                    Name       = "Desktop"
+                    Value      = $DesktopPath
+                }
+                $obj | Add-Member @DesktopMemberSplat
+            }
+            if ($($using:Library) -eq "D") {
+                $DesktopPathSplat = @{
+                    Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
+                    Name        = "Desktop"
+                    ErrorAction = "SilentlyContinue"
+                }
+                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
+                $DesktopMemberSplat = @{
+                    MemberType = "NoteProperty"
+                    Name       = "Desktop"
+                    Value      = $DesktopPath
+                }
+                $obj | Add-Member @DesktopMemberSplat
+            }
+            if ($($using:Library) -eq "D") {
+                $DesktopPathSplat = @{
+                    Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
+                    Name        = "Desktop"
+                    ErrorAction = "SilentlyContinue"
+                }
+                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
+                $DesktopMemberSplat = @{
+                    MemberType = "NoteProperty"
+                    Name       = "Desktop"
+                    Value      = $DesktopPath
+                }
+                $obj | Add-Member @DesktopMemberSplat
+            }
             Write-Output $obj
         }
     }
