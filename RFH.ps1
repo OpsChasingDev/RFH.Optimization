@@ -152,18 +152,18 @@ function Get-RFH {
                 $obj | Add-Member @AppDataMemberSplat
             }
             if ($($using:Library) -eq "S") {
-                $DesktopPathSplat = @{
+                $StartMenuPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
-                    Name        = "Desktop"
+                    Name        = "Start Menu"
                     ErrorAction = "SilentlyContinue"
                 }
-                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
-                $DesktopMemberSplat = @{
+                $StartMenuPath = (Get-ItemProperty @StartMenuPathSplat)."Start Menu"
+                $StartMenuMemberSplat = @{
                     MemberType = "NoteProperty"
-                    Name       = "Desktop"
-                    Value      = $DesktopPath
+                    Name       = "StartMenu"
+                    Value      = $StartMenuPath
                 }
-                $obj | Add-Member @DesktopMemberSplat
+                $obj | Add-Member @StartMenuMemberSplat
             }
             if ($($using:Library) -eq "C") {
                 $DesktopPathSplat = @{
