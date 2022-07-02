@@ -82,18 +82,18 @@ function Get-RFH {
                 $obj | Add-Member @DownloadsMemberSplat
             }
             if ($($using:Library) -eq "M") {
-                $DesktopPathSplat = @{
+                $MusicPathSplat = @{
                     Path        = "REGISTRY::HKU\$($obj.UserSID)\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\"
-                    Name        = "Desktop"
+                    Name        = "My Music"
                     ErrorAction = "SilentlyContinue"
                 }
-                $DesktopPath = (Get-ItemProperty @DesktopPathSplat).Desktop
-                $DesktopMemberSplat = @{
+                $MusicPath = (Get-ItemProperty @MusicPathSplat)."My Music"
+                $MusicMemberSplat = @{
                     MemberType = "NoteProperty"
-                    Name       = "Desktop"
-                    Value      = $DesktopPath
+                    Name       = "Music"
+                    Value      = $MusicPath
                 }
-                $obj | Add-Member @DesktopMemberSplat
+                $obj | Add-Member @MusicMemberSplat
             }
             if ($($using:Library) -eq "P") {
                 $DesktopPathSplat = @{
