@@ -259,6 +259,18 @@ function Get-RFH {
     # loop checking all the jobs in place
     # when a job enters .State -eq "Completed", then receive that job, remove that job,  and write progress
     # Get-Job | Remove-Job -Force
+    
+    $AllJob = Get-Job
+    while ($AllJob) {
+        $CompletedJob = Get-Job | Where-Object {$_.State -eq "Completed"}
+        foreach ($j in $CompletedJob) {
+            Receive-Job -Job $j
+            Remove-Job -Job $j
+            $TotalCount -= 1
+            # write progress
+        }
+        $AllJob = Get-Job
+    }
 
     if ($ShowError) { Write-Output $InvokeError }
     $EndTime = Get-Date
