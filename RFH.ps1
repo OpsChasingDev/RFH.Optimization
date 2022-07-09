@@ -1,4 +1,7 @@
 <#
+- create progress bar
+    - fix issue created by the fact that child objects can only be removed by removing the parent jobs
+    (leave all jobs in place and check for completion status rather than existing)
 - create a new function to take Get-RFH's output and generate reports based on user's wishes; only accept custom output type from RFh
 - add in CBH
 
@@ -21,7 +24,7 @@ function Get-RFH {
         [switch]$ShowError
     )
     $StartTime = Get-Date
-    $TotalCount = $ComputerName.Count
+    $TotalCount = ($ComputerName.Count) - 1
     Write-Verbose "Starting redirection check for: $ComputerName"
     $InvokeSplat = @{
         ComputerName = $ComputerName
@@ -260,17 +263,7 @@ function Get-RFH {
     # when a job enters .State -eq "Completed", then receive that job, remove that job,  and write progress
     # Get-Job | Remove-Job -Force
     
-    $AllJob = Get-Job
-    while ($AllJob) {
-        $CompletedJob = Get-Job | Where-Object {$_.State -eq "Completed"}
-        foreach ($j in $CompletedJob) {
-            Receive-Job -Job $j
-            Remove-Job -Job $j
-            $TotalCount -= 1
-            # write progress
-        }
-        $AllJob = Get-Job
-    }
+
 
     if ($ShowError) { Write-Output $InvokeError }
     $EndTime = Get-Date
