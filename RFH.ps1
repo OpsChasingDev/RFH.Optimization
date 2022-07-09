@@ -1,5 +1,4 @@
 <#
-- add Get-RedirectedFolderGPO function to this file
 - test pipeline input for libraries
 - create a new function to take Get-RFH's output and generate reports based on user's wishes
 - add in verbose
@@ -11,11 +10,11 @@ function Get-RFH {
     [CmdletBinding()]
     [Alias('Get-RedirectedFolderHealth')]
     param (
-        [Parameter(Mandatory = $true)]
-        [string[]]$ComputerName,
-        
         [Parameter(Mandatory = $true,
             ValueFromPipeline = $true)]
+        [string[]]$ComputerName,
+        
+        [Parameter(Mandatory = $true)]
         [ValidateSet("D", "O", "W", "M", "P", "V", "F", "A", "S", "C", "L", "H", "G")]
         [string[]]$Library,
 
