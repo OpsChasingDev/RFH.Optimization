@@ -27,6 +27,7 @@ function Get-RFH {
         ErrorAction = 'SilentlyContinue'
         ErrorVariable = 'InvokeError'
         ThrottleLimit = $ThrottleLimit
+        AsJob = $true
     }
     Invoke-Command @InvokeSplat {
         # stores a list of SIDs belonging to only the users logged in (includes domain admin)
