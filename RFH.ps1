@@ -26,6 +26,7 @@ function Get-RFH {
     $StartTime = Get-Date
     $TotalCount = $ComputerName.Count
     $TotalCountJob = ($ComputerName.Count).Count + 1
+    Write-Output $TotalCount
     Write-Verbose "Starting redirection check for: $ComputerName"
     $InvokeSplat = @{
         ComputerName = $ComputerName
