@@ -23,6 +23,7 @@ function Get-RFH {
 
         [switch]$ShowError
     )
+    $StartTime = Get-Date
     Write-Verbose "Starting redirection check for: $ComputerName"
     Invoke-Command -ComputerName $ComputerName -ErrorAction SilentlyContinue -ErrorVariable InvokeError -ThrottleLimit $ThrottleLimit {
         # stores a list of SIDs belonging to only the users logged in (includes domain admin)
@@ -247,4 +248,7 @@ function Get-RFH {
     }
     
     if ($ShowError) { Write-Output $InvokeError }
+    $EndTime = Get-Date
+    $ElapsedTime = $EndTime - $StartTime
+    Write-Verbose "Elapsed time (HH:MM:SS): $ElapsedTime"
 }
