@@ -24,7 +24,7 @@ function Get-RFH {
         [switch]$ShowError
     )
     $StartTime = Get-Date
-    $TotalCountComputer = $ComputerName.Count
+    $TotalCount = $ComputerName.Count
     $TotalCountJob = ($ComputerName.Count).Count + 1
     Write-Verbose "Starting redirection check for: $ComputerName"
     $InvokeSplat = @{
@@ -264,7 +264,16 @@ function Get-RFH {
     # when a job enters .State -eq "Completed", then receive that job, remove that job,  and write progress
     # Get-Job | Remove-Job -Force
     
-
+do {
+    # act on each job where the state is Completed and HasMoreData is false (newly completed jobs)
+    foreach ($j in (Get-Job -IncludeChildJob | Where-Object {$_.State -eq "Completed" -and $_.HasMoreData -eq $true})) {
+        Receive-Job -Job $j
+        $TotalCount -= 1
+    }
+} while (
+    # while a running job exists
+    $(Get-Job -IncludeChildJob | Where-Object {$_.State -eq "Running"})
+)
 
     if ($ShowError) { Write-Output $InvokeError }
     $EndTime = Get-Date
