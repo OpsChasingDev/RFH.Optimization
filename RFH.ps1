@@ -1,7 +1,6 @@
 <#
 - create progress bar
-    - fix issue created by the fact that child objects can only be removed by removing the parent jobs
-    (leave all jobs in place and check for completion status rather than existing)
+    job logic done - add in "Write-Progress" code
 - create a new function to take Get-RFH's output and generate reports based on user's wishes; only accept custom output type from RFh
 - add in CBH
 
