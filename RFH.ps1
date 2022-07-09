@@ -37,6 +37,7 @@ function Get-RFH {
             $Prof = Get-ItemProperty -Path "REGISTRY::$s" -Name "ProfileImagePath"
             $User = ($Prof.ProfileImagePath.ToString()).Split('\')[-1]
             $objUser = [PSCustomObject]@{
+                PSTypeName = "RFH"
                 UserSID  = $Prof.PSChildName
                 UserName = $User
             }
