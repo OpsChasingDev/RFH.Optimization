@@ -267,6 +267,7 @@ function Get-RFH {
             Receive-Job -Job $j
             $TotalCount -= 1
             Write-Output $TotalCount
+            Write-Output "Done checking $($j.Location)"
         }
     } while (
         # while a running job exists
