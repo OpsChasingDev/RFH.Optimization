@@ -267,16 +267,17 @@ function Get-RFH {
 do {
     # act on each job where the state is Completed and HasMoreData is false (newly completed jobs)
     # receive the job and update the counter
-    foreach ($j in (Get-Job -IncludeChildJob | Where-Object {$_.State -eq "Completed" -and $_.HasMoreData -eq $true})) {
+    foreach ($j in (Get-Job -IncludeChildJob | Where-Object {$_.State -eq "Completed" -or $_.State -eq "Failed" -and $_.HasMoreData -eq $true})) {
         Receive-Job -Job $j
         $TotalCount -= 1
+        Write-Output $TotalCount
     }
 } while (
     # while a running job exists
     $(Get-Job -IncludeChildJob | Where-Object {$_.State -eq "Running"})
 )
 # clean up parent job
-Get-Job | Where-Object {$_.State -eq "Completed"} | Remove-Job
+Get-Job | Where-Object {$_.State -eq "Completed" -or $_.State -eq "Failed"} | Remove-Job
 
     if ($ShowError) { Write-Output $InvokeError }
     $EndTime = Get-Date
