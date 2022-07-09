@@ -27,8 +27,7 @@ function Get-RFH {
     $TotalCount = $ComputerName.Count
     $TotalCountJob = ($ComputerName.Count).Count + 1
     Write-Output $TotalCount
-    $Split = $ComputerName | % {Write-Output "`n$_"}
-    Write-Verbose "Starting redirection check for: $Split"
+    Write-Verbose "Starting redirection check for: $($ComputerName | Sort-Object | ForEach-Object {Write-Output "`n$_"})"
     $InvokeSplat = @{
         ComputerName  = $ComputerName
         ErrorAction   = 'SilentlyContinue'
