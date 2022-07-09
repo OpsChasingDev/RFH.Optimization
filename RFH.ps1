@@ -22,7 +22,13 @@ function Get-RFH {
     )
     $StartTime = Get-Date
     Write-Verbose "Starting redirection check for: $ComputerName"
-    Invoke-Command -ComputerName $ComputerName -ErrorAction SilentlyContinue -ErrorVariable InvokeError -ThrottleLimit $ThrottleLimit {
+    $InvokeSplat = @{
+        ComputerName = $ComputerName
+        ErrorAction = 'SilentlyContinue'
+        ErrorVariable = 'InvokeError'
+        ThrottleLimit = $ThrottleLimit
+    }
+    Invoke-Command @InvokeSplat {
         # stores a list of SIDs belonging to only the users logged in (includes domain admin)
         eventcreate /ID 13 /L APPLICATION /T INFORMATION /SO RedirectedFolderHealth /D "A RedirectedFolderHealth check has started a query on this machine..." > $null
         $User_LoggedIn = (Get-ChildItem "REGISTRY::HKU\" -ErrorAction SilentlyContinue |
