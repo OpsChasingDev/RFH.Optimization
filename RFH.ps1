@@ -1,7 +1,6 @@
 <#
 - set the object output type of RFH to validate input to the below new function
 - create a new function to take Get-RFH's output and generate reports based on user's wishes; only accept custom output type from RFh
-- add in logging
 - add in progress bar
 - add in CBH
 
