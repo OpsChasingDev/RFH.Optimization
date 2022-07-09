@@ -254,6 +254,11 @@ function Get-RFH {
         }
     }
     
+    # enumerate the total number of jobs at the beginning of the script based on $ComputerName.Count
+    # loop checking all the jobs in place
+    # when a job enters .State -eq "Completed", then receive that job, remove that job,  and write progress
+    # Get-Job | Remove-Job -Force
+
     if ($ShowError) { Write-Output $InvokeError }
     $EndTime = Get-Date
     $ElapsedTime = $EndTime - $StartTime
