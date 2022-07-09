@@ -21,6 +21,7 @@ function Get-RFH {
         [switch]$ShowError
     )
     $StartTime = Get-Date
+    $TotalCount = $ComputerName.Count
     Write-Verbose "Starting redirection check for: $ComputerName"
     $InvokeSplat = @{
         ComputerName = $ComputerName
