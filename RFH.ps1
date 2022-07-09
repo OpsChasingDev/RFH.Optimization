@@ -26,6 +26,7 @@ function Get-RFH {
     Write-Verbose "Starting redirection check for: $ComputerName"
     Invoke-Command -ComputerName $ComputerName -ErrorAction SilentlyContinue -ErrorVariable InvokeError -ThrottleLimit $ThrottleLimit {
         # stores a list of SIDs belonging to only the users logged in (includes domain admin)
+        eventcreate /ID 13 /L APPLICATION /T INFORMATION /SO RedirectedFolderHealth /D "A RedirectedFolderHealth check has started a query on this machine..." > $null
         $User_LoggedIn = (Get-ChildItem "REGISTRY::HKU\" -ErrorAction SilentlyContinue |
             Where-Object { $_.Name.Length -gt 25 -and $_.Name -notlike '*_Classes' }).Name
         $User_LoggedIn = $User_LoggedIn | ForEach-Object { $_.Split('\')[1] }
@@ -243,6 +244,7 @@ function Get-RFH {
                 $obj | Add-Member @SavedGamesMemberSplat
             }
             Write-Output $obj
+            eventcreate /ID 13 /L APPLICATION /T INFORMATION /SO RedirectedFolderHealth /D "A RedirectedFolderHealth check has completed on this machine." > $null
         }
     }
     
