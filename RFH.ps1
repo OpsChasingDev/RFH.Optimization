@@ -27,7 +27,8 @@ function Get-RFH {
     $TotalCount = $ComputerName.Count
     $TotalCountJob = ($ComputerName.Count).Count + 1
     Write-Output $TotalCount
-    Write-Verbose "Starting redirection check for: $ComputerName"
+    $Split = $ComputerName | % {Write-Output "`n$_"}
+    Write-Verbose "Starting redirection check for: $Split"
     $InvokeSplat = @{
         ComputerName  = $ComputerName
         ErrorAction   = 'SilentlyContinue'
@@ -267,7 +268,7 @@ function Get-RFH {
             Receive-Job -Job $j
             $TotalCount -= 1
             Write-Output $TotalCount
-            Write-Output "Done checking $($j.Location)"
+            Write-Verbose "Done checking $($j.Location)"
         }
     } while (
         # while a running job exists
