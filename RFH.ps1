@@ -22,6 +22,7 @@ function Get-RFH {
 
         [switch]$ShowError
     )
+    Write-Verbose "Starting redirection check for: $ComputerName"
     Invoke-Command -ComputerName $ComputerName -ErrorAction SilentlyContinue -ErrorVariable InvokeError -ThrottleLimit $ThrottleLimit {
         # stores a list of SIDs belonging to only the users logged in (includes domain admin)
         $User_LoggedIn = (Get-ChildItem "REGISTRY::HKU\" -ErrorAction SilentlyContinue |
