@@ -29,11 +29,11 @@ function Get-RFH {
     Write-Output $TotalCount
     Write-Verbose "Starting redirection check for: $ComputerName"
     $InvokeSplat = @{
-        ComputerName = $ComputerName
-        ErrorAction = 'SilentlyContinue'
+        ComputerName  = $ComputerName
+        ErrorAction   = 'SilentlyContinue'
         ErrorVariable = 'InvokeError'
         ThrottleLimit = $ThrottleLimit
-        AsJob = $true
+        AsJob         = $true
     }
     Invoke-Command @InvokeSplat {
         # stores a list of SIDs belonging to only the users logged in (includes domain admin)
@@ -50,8 +50,8 @@ function Get-RFH {
             $User = ($Prof.ProfileImagePath.ToString()).Split('\')[-1]
             $objUser = [PSCustomObject]@{
                 PSTypeName = "RFH.RFH"
-                UserSID  = $Prof.PSChildName
-                UserName = $User
+                UserSID    = $Prof.PSChildName
+                UserName   = $User
             }
             if ($objUser.UserSID.Length -gt 25 -and $User_LoggedIn -contains $objUser.UserSID) {
                 $colUser += $objUser
@@ -259,26 +259,22 @@ function Get-RFH {
             eventcreate /ID 13 /L APPLICATION /T INFORMATION /SO RedirectedFolderHealth /D "A RedirectedFolderHealth check has completed on this machine." > $null
         }
     }
-    
-    # enumerate the total number of jobs at the beginning of the script based on $ComputerName.Count
-    # loop checking all the jobs in place
-    # when a job enters .State -eq "Completed", then receive that job, remove that job,  and write progress
-    # Get-Job | Remove-Job -Force
-    
-do {
-    # act on each job where the state is Completed and HasMoreData is false (newly completed jobs)
-    # receive the job and update the counter
-    foreach ($j in (Get-Job -IncludeChildJob | Where-Object {$_.State -eq "Completed" -or $_.State -eq "Failed" -and $_.HasMoreData -eq $true})) {
-        Receive-Job -Job $j
-        $TotalCount -= 1
-        Write-Output $TotalCount
-    }
-} while (
-    # while a running job exists
-    $(Get-Job -IncludeChildJob | Where-Object {$_.State -eq "Running"})
-)
-# clean up parent job
-Get-Job | Where-Object {$_.State -eq "Completed" -or $_.State -eq "Failed"} | Remove-Job
+
+    do {
+        # act on each job where the state is Completed and HasMoreData is false (newly completed jobs)
+        # receive the job and update the counter
+        foreach ($j in (Get-Job -IncludeChildJob | Where-Object { $_.State -eq "Completed" -or $_.State -eq "Failed" -and $_.HasMoreData -eq $true })) {
+            Receive-Job -Job $j
+            $TotalCount -= 1
+            Write-Output $TotalCount
+        }
+    } while (
+        # while a running job exists
+        $(Get-Job -IncludeChildJob | Where-Object { $_.State -eq "Running" })
+    )
+
+    # clean up parent job
+    Get-Job | Where-Object { $_.State -eq "Completed" -or $_.State -eq "Failed" } | Remove-Job
 
     if ($ShowError) { Write-Output $InvokeError }
     $EndTime = Get-Date
