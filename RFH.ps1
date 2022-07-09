@@ -1,6 +1,6 @@
 <#
-- test pipeline input for libraries
-- create a new function to take Get-RFH's output and generate reports based on user's wishes
+- set the object output type of RFH to validate input to the below new function
+- create a new function to take Get-RFH's output and generate reports based on user's wishes; only accept custom output type from RFh
 - add in verbose
 - add in logging
 - add in CBH
