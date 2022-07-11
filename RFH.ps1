@@ -27,7 +27,6 @@ function Get-RFH {
     $RemainingCount = $TotalCount
     $TotalCountJob = ($ComputerName.Count).Count + 1
 
-    Write-Output "$TotalCount computers remaining"
     Write-Verbose "Starting redirection check for: $($ComputerName | Sort-Object | ForEach-Object {Write-Output "`n$_"})"
     Write-Progress -Activity "Checking user library paths..." -Status "Running..." -PercentComplete ((0 / $TotalCount) * 100)
 
@@ -266,12 +265,19 @@ function Get-RFH {
     do {
         # act on each job where the state is Completed and HasMoreData is false (newly completed jobs)
         # receive the job and update the counter
-        foreach ($Job in (Get-Job -IncludeChildJob | Where-Object { $_.State -eq "Completed" -or $_.State -eq "Failed" -and $_.HasMoreData -eq $true })) {
+        foreach (
+            $Job in (
+                Get-Job -IncludeChildJob | Where-Object {
+                    $_.State -eq "Completed" -or
+                    $_.State -eq "Failed" -and
+                    $_.HasMoreData -eq $true
+                }
+            )
+        ) {
             Receive-Job -Job $Job
             $RemainingCount -= 1
             Write-Progress -Activity "Checking user library paths..." -Status "Running..." -PercentComplete (($RemainingCount / $TotalCount) * 100)
             Write-Verbose "Done checking $($Job.Location)"
-            Write-Output "$RemainingCount computers remaining"
         }
     } while (
         # while a running job exists
@@ -282,6 +288,7 @@ function Get-RFH {
     Get-Job | Where-Object { $_.State -eq "Completed" -or $_.State -eq "Failed" } | Remove-Job
 
     if ($ShowError) { Write-Output $InvokeError }
+    
     $EndTime = Get-Date
     $ElapsedTime = $EndTime - $StartTime
     Write-Verbose "Elapsed time (HH:MM:SS): $ElapsedTime"
