@@ -24,9 +24,11 @@ function Get-RFH {
     )
     $StartTime = Get-Date
     $TotalCount = $ComputerName.Count
+    $RemainingCount = $TotalCount
     $TotalCountJob = ($ComputerName.Count).Count + 1
-    Write-Output $TotalCount
+    Write-Output "$TotalCount computers remaining"
     Write-Verbose "Starting redirection check for: $($ComputerName | Sort-Object | ForEach-Object {Write-Output "`n$_"})"
+    Write-Progress -Activity "Checking user library paths..." -Status "Running..." -PercentComplete ((0 / $TotalCount) * 100)
     $InvokeSplat = @{
         ComputerName  = $ComputerName
         ErrorAction   = 'SilentlyContinue'
@@ -257,15 +259,16 @@ function Get-RFH {
             Write-Output $obj
             eventcreate /ID 13 /L APPLICATION /T INFORMATION /SO RedirectedFolderHealth /D "A RedirectedFolderHealth check has completed on this machine." > $null
         }
-    }
+    } | Out-Null
 
     do {
         # act on each job where the state is Completed and HasMoreData is false (newly completed jobs)
         # receive the job and update the counter
         foreach ($j in (Get-Job -IncludeChildJob | Where-Object { $_.State -eq "Completed" -or $_.State -eq "Failed" -and $_.HasMoreData -eq $true })) {
             Receive-Job -Job $j
-            $TotalCount -= 1
-            Write-Output $TotalCount
+            $RemainingCount -= 1
+            Write-Output "$RemainingCount computers remaining"
+            Write-Progress -Activity "Checking user library paths..." -Status "Running..." -PercentComplete (($RemainingCount / $TotalCount) * 100)
             Write-Verbose "Done checking $($j.Location)"
         }
     } while (
