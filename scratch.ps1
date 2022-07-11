@@ -1,9 +1,10 @@
-break
 # returns list of folders corresponding to SIDs on a machine
 # Get-ChildItem 'REGISTRY::HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\' | Select Name
 
 # returns the username (SamAccountName) and corresponding SID for each user profile on the computer
 $ComputerName = 'sl-computer-001','sl-computer-002','sl-db-01','notonline'
+$TotalCount = $ComputerName.Count
+Write-Output $TotalCount
 
 Invoke-Command $ComputerName -ErrorAction SilentlyContinue -AsJob {
     Start-Sleep -Seconds 3
