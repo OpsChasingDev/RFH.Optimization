@@ -6,6 +6,10 @@ $VerbosePreference = 'Continue'
 $ComputerName = @(
     'sl-computer-001'
     'sl-computer-002'
+    'sl-computer-003'
+    'sl-computer-004'
+    'sl-computer-005'
+    'sl-computer-006'
     'sl-db-01'
     'notonline'
 )
