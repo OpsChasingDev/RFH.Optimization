@@ -25,7 +25,6 @@ function Get-RFH {
     $StartTime = Get-Date
     $TotalCount = $ComputerName.Count
     $RemainingCount = $TotalCount
-    $TotalCountJob = ($ComputerName.Count).Count + 1
 
     Write-Verbose "Starting redirection check for: $($ComputerName | Sort-Object | ForEach-Object {Write-Output "`n$_"})"
     Write-Progress -Activity "Checking user library paths..." -Status "Running..." -PercentComplete ((0 / $TotalCount) * 100)
@@ -288,7 +287,7 @@ function Get-RFH {
     Get-Job | Where-Object { $_.State -eq "Completed" -or $_.State -eq "Failed" } | Remove-Job
 
     if ($ShowError) { Write-Output $InvokeError }
-    
+
     $EndTime = Get-Date
     $ElapsedTime = $EndTime - $StartTime
     Write-Verbose "Elapsed time (HH:MM:SS): $ElapsedTime"
