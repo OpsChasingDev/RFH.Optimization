@@ -26,9 +26,11 @@ function Get-RFH {
     $TotalCount = $ComputerName.Count
     $RemainingCount = $TotalCount
     $TotalCountJob = ($ComputerName.Count).Count + 1
+
     Write-Output "$TotalCount computers remaining"
     Write-Verbose "Starting redirection check for: $($ComputerName | Sort-Object | ForEach-Object {Write-Output "`n$_"})"
     Write-Progress -Activity "Checking user library paths..." -Status "Running..." -PercentComplete ((0 / $TotalCount) * 100)
+    
     $InvokeSplat = @{
         ComputerName  = $ComputerName
         ErrorAction   = 'SilentlyContinue'
