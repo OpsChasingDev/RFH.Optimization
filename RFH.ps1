@@ -30,7 +30,7 @@ function Get-RFH {
     Write-Output "$TotalCount computers remaining"
     Write-Verbose "Starting redirection check for: $($ComputerName | Sort-Object | ForEach-Object {Write-Output "`n$_"})"
     Write-Progress -Activity "Checking user library paths..." -Status "Running..." -PercentComplete ((0 / $TotalCount) * 100)
-    
+
     $InvokeSplat = @{
         ComputerName  = $ComputerName
         ErrorAction   = 'SilentlyContinue'
@@ -266,12 +266,12 @@ function Get-RFH {
     do {
         # act on each job where the state is Completed and HasMoreData is false (newly completed jobs)
         # receive the job and update the counter
-        foreach ($j in (Get-Job -IncludeChildJob | Where-Object { $_.State -eq "Completed" -or $_.State -eq "Failed" -and $_.HasMoreData -eq $true })) {
-            Receive-Job -Job $j
+        foreach ($Job in (Get-Job -IncludeChildJob | Where-Object { $_.State -eq "Completed" -or $_.State -eq "Failed" -and $_.HasMoreData -eq $true })) {
+            Receive-Job -Job $Job
             $RemainingCount -= 1
             Write-Output "$RemainingCount computers remaining"
             Write-Progress -Activity "Checking user library paths..." -Status "Running..." -PercentComplete (($RemainingCount / $TotalCount) * 100)
-            Write-Verbose "Done checking $($j.Location)"
+            Write-Verbose "Done checking $($Job.Location)"
         }
     } while (
         # while a running job exists
