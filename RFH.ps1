@@ -269,9 +269,9 @@ function Get-RFH {
         foreach ($Job in (Get-Job -IncludeChildJob | Where-Object { $_.State -eq "Completed" -or $_.State -eq "Failed" -and $_.HasMoreData -eq $true })) {
             Receive-Job -Job $Job
             $RemainingCount -= 1
-            Write-Output "$RemainingCount computers remaining"
             Write-Progress -Activity "Checking user library paths..." -Status "Running..." -PercentComplete (($RemainingCount / $TotalCount) * 100)
             Write-Verbose "Done checking $($Job.Location)"
+            Write-Output "$RemainingCount computers remaining"
         }
     } while (
         # while a running job exists
