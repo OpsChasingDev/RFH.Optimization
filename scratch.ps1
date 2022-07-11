@@ -9,7 +9,7 @@ Write-Output $TotalCount
 Invoke-Command $ComputerName -ErrorAction SilentlyContinue -AsJob {
     Start-Sleep -Seconds 3
     Write-Output "Done on $env:ComputerName"
-}
+} | Out-Null
 
 do {
     # act on each job where the state is Completed and HasMoreData is false (newly completed jobs)
