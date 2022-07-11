@@ -1,6 +1,5 @@
 <#
-- create progress bar
-    job logic done - add in "Write-Progress" code
+- add logic to handle jobs that may exist in the current scope prior to running the function
 - create a new function to take Get-RFH's output and generate reports based on user's wishes; only accept custom output type from RFh
 - add in CBH
 
