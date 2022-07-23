@@ -1,4 +1,7 @@
 <#
+- fix bug at line 269
+    - foreach operation is returning the parent job as well as the child jobs
+    - if all the child jobs complete before the parent job, then the parent job is returned and breaks the returning values of the other child jobs
 - add logic to handle jobs that may exist in the current scope prior to running the function
 - create a new function to take Get-RFH's output and generate reports based on user's wishes; only accept custom output type from RFh
 - add in CBH
