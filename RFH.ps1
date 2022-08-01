@@ -263,7 +263,20 @@ function Get-RFH {
         }
     } | Out-Null
 
-    
+    # loop checking the status of all jobs in $RemainingJob
+    # store all child jobs in a list of $RemainingJob
+        # if the child job has a completed or failed status
+            # receive the job
+            # remove the job from $RemainingJob
+            # remove the job by ID
+        # wait for 1 second
+        # repeat loop while $RemainingJob exists
+
+    while (<# child jobs that have more data exist #>) {
+        # receive child jobs where the status is completed or failed
+        # remove child jobs where 
+        # sleep 1 second
+    }
 
     # clean up parent job
     Get-Job | Where-Object { $_.State -eq "Completed" -or $_.State -eq "Failed" } | Remove-Job
