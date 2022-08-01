@@ -263,27 +263,7 @@ function Get-RFH {
         }
     } | Out-Null
 
-    do {
-        # act on each job where the state is Completed and HasMoreData is false (newly completed jobs)
-        # receive the job and update the counter
-        foreach (
-            $Job in (
-                Get-Job -IncludeChildJob | Where-Object {
-                    $_.State -eq "Completed" -or
-                    $_.State -eq "Failed" -and
-                    $_.HasMoreData -eq $true
-                }
-            )
-        ) {
-            Receive-Job -Job $Job
-            $RemainingCount -= 1
-            Write-Progress -Activity "Checking user library paths..." -Status "Running..." -PercentComplete (($RemainingCount / $TotalCount) * 100)
-            Write-Verbose "Done checking $($Job.Location)"
-        }
-    } while (
-        # while a running job exists
-        $(Get-Job -IncludeChildJob | Where-Object { $_.State -eq "Running" })
-    )
+    
 
     # clean up parent job
     Get-Job | Where-Object { $_.State -eq "Completed" -or $_.State -eq "Failed" } | Remove-Job
