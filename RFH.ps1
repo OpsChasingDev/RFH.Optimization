@@ -1,7 +1,8 @@
 <#
-- fix bug at line 269
-    - foreach operation is returning the parent job as well as the child jobs
-    - if all the child jobs complete before the parent job, then the parent job is returned and breaks the returning values of the other child jobs
+- fixes and next steps for refactoring job checking
+    - add in a small wait
+    - handle unreachable machines better (currently spamming error in the loop)
+    - handle progress bar (values can be based off the number of child jobs where $_.HasMoreData -eq $false)
 - add logic to handle jobs that may exist in the current scope prior to running the function
 - create a new function to take Get-RFH's output and generate reports based on user's wishes; only accept custom output type from RFh
 - add in CBH
@@ -265,7 +266,6 @@ function Get-RFH {
 
     while ($(Get-Job -IncludeChildJob | Where-Object { $_.HasMoreData -eq $true })) {
         Get-Job -IncludeChildJob | Where-Object { $_.HasMoreData -eq $true } | Receive-Job
-        Start-Sleep -Seconds 1
     }
 
     # clean up jobs
