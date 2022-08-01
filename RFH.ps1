@@ -263,14 +263,13 @@ function Get-RFH {
         }
     } | Out-Null
 
-    while (<# child jobs that have more data exist #>) {
-        # receive child jobs where the status is completed or failed
-        # remove child jobs where 
-        # sleep 1 second
+    while ($(Get-Job -IncludeChildJob | Where-Object { $_.HasMoreData -eq $true })) {
+        Get-Job -IncludeChildJob | Where-Object { $_.HasMoreData -eq $true } | Receive-Job
+        Start-Sleep -Seconds 1
     }
 
-    # clean up parent job
-    Get-Job | Where-Object { $_.State -eq "Completed" -or $_.State -eq "Failed" } | Remove-Job
+    # clean up jobs
+    Get-Job | Remove-Job -Force
 
     if ($ShowError) { Write-Output $InvokeError }
 
