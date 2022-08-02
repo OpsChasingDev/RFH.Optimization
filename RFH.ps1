@@ -264,7 +264,7 @@ function Get-RFH {
     } | Out-Null
 
     while ($(Get-Job -IncludeChildJob | Where-Object { $_.HasMoreData -eq $true })) {
-        Get-Job -IncludeChildJob | Where-Object { $_.HasMoreData -eq $true } | Receive-Job
+        Get-Job -IncludeChildJob | Where-Object { $_.HasMoreData -eq $true } | Receive-Job -ErrorAction SilentlyContinue
     }
 
     # clean up jobs
