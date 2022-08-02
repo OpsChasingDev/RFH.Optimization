@@ -20,7 +20,7 @@ function Get-RFH {
     )
     # immediate break if existing jobs are found
     if ($null -ne (Get-Job)) {
-        Write-Verbose "Finish and remove all existing jobs in the scope before running this function."
+        Write-Warning "Nothing was run. Finish and remove all existing jobs in the scope before running this function."
         break
     }
 
