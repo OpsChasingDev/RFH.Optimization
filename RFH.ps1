@@ -1,6 +1,5 @@
 <#
 - fixes and next steps for refactoring job checking
-    - add in a small wait
     - handle unreachable machines better (currently spamming error in the loop)
     - handle progress bar (values can be based off the number of child jobs where $_.HasMoreData -eq $false)
 - add logic to handle jobs that may exist in the current scope prior to running the function
