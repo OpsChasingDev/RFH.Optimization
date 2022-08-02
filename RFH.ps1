@@ -1,6 +1,5 @@
 <#
 - fixes and next steps for refactoring job checking
-    - handle unreachable machines better (currently spamming error in the loop)
     - handle progress bar (values can be based off the number of child jobs where $_.HasMoreData -eq $false)
 - add logic to handle jobs that may exist in the current scope prior to running the function
 - create a new function to take Get-RFH's output and generate reports based on user's wishes; only accept custom output type from RFh
@@ -20,9 +19,7 @@ function Get-RFH {
         [ValidateSet("D", "O", "W", "M", "P", "V", "F", "A", "S", "C", "L", "H", "G")]
         [string[]]$Library,
 
-        [int]$ThrottleLimit = 32,
-
-        [switch]$ShowError
+        [int]$ThrottleLimit = 32
     )
     $StartTime = Get-Date
     $TotalCount = $ComputerName.Count
@@ -34,7 +31,6 @@ function Get-RFH {
     $InvokeSplat = @{
         ComputerName  = $ComputerName
         ErrorAction   = 'SilentlyContinue'
-        ErrorVariable = 'InvokeError'
         ThrottleLimit = $ThrottleLimit
         AsJob         = $true
     }
@@ -264,13 +260,11 @@ function Get-RFH {
     } | Out-Null
 
     while ($(Get-Job -IncludeChildJob | Where-Object { $_.HasMoreData -eq $true })) {
-        Get-Job -IncludeChildJob | Where-Object { $_.HasMoreData -eq $true } | Receive-Job -ErrorAction SilentlyContinue
+        Get-Job -IncludeChildJob | Where-Object { $_.HasMoreData -eq $true } | Receive-Job -ErrorAction 'SilentlyContinue'
     }
 
     # clean up jobs
     Get-Job | Remove-Job -Force
-
-    if ($ShowError) { Write-Output $InvokeError }
 
     $EndTime = Get-Date
     $ElapsedTime = $EndTime - $StartTime
