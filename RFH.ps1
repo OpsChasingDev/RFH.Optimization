@@ -19,6 +19,11 @@ function Get-RFH {
 
         [int]$ThrottleLimit = 32
     )
+    # immediate break if existing jobs are found
+    if ($null -ne (Get-Job)) {
+        break
+    }
+
     $StartTime = Get-Date
     $TotalCount = $ComputerName.Count
 
