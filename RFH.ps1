@@ -1,4 +1,5 @@
 <#
+- add in an exclusion for admin accounts
 - create a new function to take Get-RFH's output and generate reports based on user's wishes; only accept custom output type from RFh
 - add in CBH
 
