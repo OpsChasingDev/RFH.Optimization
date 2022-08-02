@@ -24,7 +24,7 @@ function Get-RFH {
     $TotalCount = $ComputerName.Count
 
     Write-Verbose "Starting redirection check for: $($ComputerName | Sort-Object | ForEach-Object {Write-Output "`n$_"})"
-    Write-Progress -Activity "Checking user library paths..." -Status "Running..." -PercentComplete ((0 / $TotalCount) * 100)
+    Write-Progress -Activity "Checking user library paths..." -Status "$((0 / $TotalCount) * 100)%" -PercentComplete ((0 / $TotalCount) * 100)
 
     $InvokeSplat = @{
         ComputerName  = $ComputerName
@@ -262,7 +262,8 @@ function Get-RFH {
         $CompleteJob = Get-Job -IncludeChildJob | Where-Object { $_.HasMoreData -eq $false }
         # only do the below write progress if there exist a non-zero number of jobs where HasMoreData is $false
         if ($CompleteJob.Count -gt 0) {
-            Write-Progress -Activity "Checking user library paths..." -Status "Running..." -PercentComplete ((($CompleteJob.Count - 1) / $TotalCount) * 100)
+            $PercentComplete = (($CompleteJob.Count - 1) / $TotalCount) * 100
+            Write-Progress -Activity "Checking user library paths..." -Status "$($PercentComplete)%" -PercentComplete $PercentComplete
         }
     }
 
