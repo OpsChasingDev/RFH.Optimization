@@ -22,7 +22,6 @@ function Get-RFH {
     )
     $StartTime = Get-Date
     $TotalCount = $ComputerName.Count
-    $RemainingCount = $TotalCount
 
     Write-Verbose "Starting redirection check for: $($ComputerName | Sort-Object | ForEach-Object {Write-Output "`n$_"})"
     Write-Progress -Activity "Checking user library paths..." -Status "Running..." -PercentComplete ((0 / $TotalCount) * 100)
@@ -260,9 +259,15 @@ function Get-RFH {
 
     while ($(Get-Job -IncludeChildJob | Where-Object { $_.HasMoreData -eq $true })) {
         Get-Job -IncludeChildJob | Where-Object { $_.HasMoreData -eq $true } | Receive-Job -ErrorAction 'SilentlyContinue'
+        $CompleteJob = Get-Job -IncludeChildJob | Where-Object { $_.HasMoreData -eq $false }
+        # only do the below write progress if there exist a non-zero number of jobs where HasMoreData is $false
+        if ($CompleteJob.Count -gt 0) {
+            Write-Progress -Activity "Checking user library paths..." -Status "Running..." -PercentComplete ((($CompleteJob.Count - 1) / $TotalCount) * 100)
+        }
     }
 
     # clean up jobs
+    Write-Verbose "Removing $((Get-Job -IncludeChildJob).Count) jobs."
     Get-Job | Remove-Job -Force
 
     $EndTime = Get-Date
