@@ -24,7 +24,8 @@ function Get-RFH {
     $TotalCount = $ComputerName.Count
 
     Write-Verbose "Starting redirection check for: $($ComputerName | Sort-Object | ForEach-Object {Write-Output "`n$_"})"
-    Write-Progress -Activity "Checking user library paths..." -Status "$((0 / $TotalCount) * 100)%" -PercentComplete ((0 / $TotalCount) * 100)
+    $InitComplete = (0 / $TotalCount) * 100
+    Write-Progress -Activity "Checking user library paths..." -Status "$($InitComplete)%" -PercentComplete $InitComplete
 
     $InvokeSplat = @{
         ComputerName  = $ComputerName
