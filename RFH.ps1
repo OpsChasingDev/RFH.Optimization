@@ -17,6 +17,8 @@ function Get-RFH {
         [ValidateSet("D", "O", "W", "M", "P", "V", "F", "A", "S", "C", "L", "H", "G")]
         [string[]]$Library,
 
+        [string[]]$Exclude,
+
         [int]$ThrottleLimit = 32
     )
     # immediate break if existing jobs are found
