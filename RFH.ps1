@@ -1,5 +1,4 @@
 <#
-- use whole numbers for the percentage completion amount displayed on the progress bar
 - add in an exclusion for admin accounts
 - add in CBH
 - modify readme.md
