@@ -270,7 +270,7 @@ function Get-RFH {
         # only do the below write progress if there exist a non-zero number of jobs where HasMoreData is $false
         if ($CompleteJob.Count -gt 0) {
             $PercentComplete = (($CompleteJob.Count - 1) / $TotalCount) * 100
-            Write-Progress -Activity "Checking user library paths..." -Status "$($PercentComplete)%" -PercentComplete $PercentComplete
+            Write-Progress -Activity "Checking user library paths..." -Status "$([math]::Round($PercentComplete,0))%" -PercentComplete $PercentComplete
         }
     }
 
