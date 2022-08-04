@@ -51,6 +51,7 @@ function Get-RFH {
         foreach ($s in $SID) {
             $Prof = Get-ItemProperty -Path "REGISTRY::$s" -Name "ProfileImagePath"
             $User = ($Prof.ProfileImagePath.ToString()).Split('\')[-1]
+            # check to make sure the $User value doesn't exist in the -Exclude param
             $objUser = [PSCustomObject]@{
                 PSTypeName = "RFH.RFH"
                 UserSID    = $Prof.PSChildName
