@@ -1,5 +1,4 @@
 <#
-- add in an exclusion for admin accounts
 - add in CBH
 - modify readme.md
 
