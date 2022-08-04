@@ -17,7 +17,7 @@ function Get-RFH {
         [ValidateSet("D", "O", "W", "M", "P", "V", "F", "A", "S", "C", "L", "H", "G")]
         [string[]]$Library,
 
-        [string[]]$Exclude,
+        [string[]]$ExcludeAccount,
 
         [int]$ThrottleLimit = 32
     )
