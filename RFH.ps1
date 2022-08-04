@@ -54,13 +54,15 @@ function Get-RFH {
             $Prof = Get-ItemProperty -Path "REGISTRY::$s" -Name "ProfileImagePath"
             $User = ($Prof.ProfileImagePath.ToString()).Split('\')[-1]
             # check to make sure the $User value doesn't exist in the -Exclude param
-            $objUser = [PSCustomObject]@{
-                PSTypeName = "RFH.RFH"
-                UserSID    = $Prof.PSChildName
-                UserName   = $User
-            }
-            if ($objUser.UserSID.Length -gt 25 -and $User_LoggedIn -contains $objUser.UserSID) {
-                $colUser += $objUser
+            if ($($using:ExcludeAccount) -notcontains $User) {
+                $objUser = [PSCustomObject]@{
+                    PSTypeName = "RFH.RFH"
+                    UserSID    = $Prof.PSChildName
+                    UserName   = $User
+                }
+                if ($objUser.UserSID.Length -gt 25 -and $User_LoggedIn -contains $objUser.UserSID) {
+                    $colUser += $objUser
+                }
             }
         }
         
