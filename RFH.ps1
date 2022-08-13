@@ -26,7 +26,16 @@ function Get-RFH {
     .LINK
         https://github.com/OpsChasingDev/RFH.Optimization
     .EXAMPLE
-        Example
+        PS C:\> Get-RFH -ComputerName 'SL-COMPUTER-001' -Library D,O
+
+UserSID        : S-1-5-21-1728172293-1059764289-3432225222-500
+UserName       : Administrator
+Desktop        : C:\Users\Administrator\Desktop
+Documents      : C:\Users\Administrator\Documents
+PSComputerName : SL-COMPUTER-001
+RunspaceId     : c4c1cf68-1710-49ec-80d1-d41c7e236f0b
+
+This example checks the computer named SL-COMPUTER-001 to retrieve the user's Desktop and Documents path.
     .EXAMPLE
         Example
     .EXAMPLE
