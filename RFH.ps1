@@ -78,7 +78,15 @@ PS C:\> Get-RFH -ComputerName $comp -Library D,O,M,P,V -ExcludeAccount Administr
 
 Checks multiple computers for multiple library paths of logged in users.  The -ExcludeAccount param has been used to prevent the Administrator account from being returned.
     .EXAMPLE
-        Example
+PS C:\> Get-RFH -ComputerName $comp -Library O -ExcludeAccount Administrator | Select-Object UserName,PSComputerName,Documents
+
+    UserName PSComputerName  Documents
+    -------- --------------  ---------
+    user1    SL-COMPUTER-001 \\SL-DC-01\RedirectedFolders\user1\Documents
+    user-002 SL-COMPUTER-002 C:\Users\user-002\Documents
+    User-003 SL-COMPUTER-002 C:\Users\User-003\Documents
+
+Retrieves the Documents path for all users except the Administrator for the specified computers.  Output has been sent down the pipeline to only return desired properties.
     .EXAMPLE
         Example
     .EXAMPLE
