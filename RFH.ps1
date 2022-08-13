@@ -398,10 +398,10 @@ Checks all computers in Active Directory to see if any logged in users have a re
         }
     } | Out-Null
 
+    # job management and progress reporting
     while ($(Get-Job -IncludeChildJob | Where-Object { $_.HasMoreData -eq $true })) {
         Get-Job -IncludeChildJob | Where-Object { $_.HasMoreData -eq $true } | Receive-Job -ErrorAction 'SilentlyContinue'
         $CompleteJob = Get-Job -IncludeChildJob | Where-Object { $_.HasMoreData -eq $false }
-        # only do the below write progress if there exist a non-zero number of jobs where HasMoreData is $false
         if ($CompleteJob.Count -gt 0) {
             $PercentComplete = (($CompleteJob.Count - 1) / $TotalCount) * 100
             Write-Progress -Activity "Checking user library paths..." -Status "$([math]::Round($PercentComplete,0))%" -PercentComplete $PercentComplete
