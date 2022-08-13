@@ -109,7 +109,21 @@ Checks all computers in Active Directory to see if any logged in users have a re
             ValueFromPipeline = $true)]
         [string[]]$ComputerName,
         
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true,
+            HelpMessage = 'Enter the letter corresponding to the library you want checked:
+        D = Desktop
+        O = Documents
+        W = Downloads
+        M = Movies
+        P = Pictures
+        V = Videos
+        F = Favorites
+        A = AppData (roaming)
+        S = Start Meu
+        C = Contacts
+        L = Links
+        H = Searches
+        G = Saved Games')]
         [ValidateSet("D", "O", "W", "M", "P", "V", "F", "A", "S", "C", "L", "H", "G")]
         [string[]]$Library,
 
