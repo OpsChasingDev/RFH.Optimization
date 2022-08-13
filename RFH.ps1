@@ -24,6 +24,7 @@ function Get-RFH {
             - Executes using PowerShell jobs
     .NOTES
         Written to support backwards compatibility up to Windows PowerShell version 3.0
+        Operates against target machines in parallel with a default concurrency of 32.
     .LINK
         https://github.com/OpsChasingDev/RFH.Optimization
     .EXAMPLE
