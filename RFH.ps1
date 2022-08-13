@@ -13,17 +13,52 @@ function Get-RFH {
             - Checks now run in parallel with control for a throttle limit
             - No dependencies on ActiveDirectory
             - No dependencies on logged in users
-            - No output-specific code or params for error detection - the user can use the output as needed
-            - Declared specific output type of [RFH.RFH]
+            - Removed params and output types that restricted use cases
+            - Removed options for Write-Host
+            - Added better verbose messaging
+            - Added progress bar
+            - Declared specific output type of [RFH.RFH] for more specific pipe-sending use cases in constructor scripts
             - Still supports excluding user accounts from the checks
             - Most computational requirements are executed at each target computer
+            - Executes using PowerShell jobs
     .NOTES
-        Information or caveats about the function e.g. 'This function is not supported in Linux'
+        Written to support backwards compatibility up to Windows PowerShell version 3.0
     .LINK
-        Specify a URI to a help page, this will show when Get-Help -Online is used.
+        https://github.com/OpsChasingDev/RFH.Optimization
     .EXAMPLE
-        Test-MyTestFunction -Verbose
-        Explanation of the function or its result. You can include multiple examples with additional .EXAMPLE lines
+        Example
+    .EXAMPLE
+        Example
+    .EXAMPLE
+        Example
+    .EXAMPLE
+        Example
+    .EXAMPLE
+        Example
+    .EXAMPLE
+        Example
+    .EXAMPLE
+        Example
+    .EXAMPLE
+        Example
+    .EXAMPLE
+        Example
+    .EXAMPLE
+        Example
+    .EXAMPLE
+        Example
+    .EXAMPLE
+        Example
+    .EXAMPLE
+        Example
+    .EXAMPLE
+        Example
+    .EXAMPLE
+        Example
+    .EXAMPLE
+        Example
+    .EXAMPLE
+        Example
     #>
     [CmdletBinding()]
     [Alias('Get-RedirectedFolderHealth')]
