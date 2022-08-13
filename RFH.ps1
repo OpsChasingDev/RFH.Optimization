@@ -12,7 +12,6 @@ function Get-RFH {
         This function is a refactored version of its previous state and includes the below changes:
             - Checks now run in parallel with control for a throttle limit
             - No dependencies on ActiveDirectory
-            - No dependencies on logged in users
             - Removed params and output types that restricted use cases
             - Removed the need for multiple parameter sets
             - Removed options for Write-Host
@@ -97,6 +96,10 @@ Returns any desktop path for all users logged into SL-RDS-01 that are not redire
 Get-RFH -ComputerName $List -Library D,O,M,P,V,F -ThrottleLimit 100
 
 Checks multiple libraries on a list of computers.  The -ThrottleLimit param has been used to increase the concurrency of the operation from the default 32.
+    .EXAMPLE
+PS C:\> (Get-ADComputer -Filter *).Name | Get-RFH -Library V | Where-Object {$_.Video -like "\\*"}
+
+Checks all computers in Active Directory to see if any logged in users have a redirected Video path.
     #>
     [CmdletBinding()]
     [Alias('Get-RedirectedFolderHealth')]
