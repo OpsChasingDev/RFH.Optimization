@@ -54,7 +54,29 @@ PS C:\> Get-RFH -ComputerName $comp -Library D
 
 This example first declares a collection of computers to check.  The variable storing the collection is then used in the -ComputerName parameter to check the Desktop path of all logged in users for both computers.
     .EXAMPLE
-        Example
+PS C:\> Get-RFH -ComputerName $comp -Library D,O,M,P,V -ExcludeAccount Administrator
+
+    UserSID        : S-1-5-21-1728172293-1059764289-3432225222-1104
+    UserName       : user1
+    Desktop        : \\SL-DC-01\RedirectedFolders\user1\Desktop
+    Documents      : \\SL-DC-01\RedirectedFolders\user1\Documents
+    Music          : \\SL-DC-01\RedirectedFolders\user1\Music
+    Pictures       : \\SL-DC-01\RedirectedFolders\user1\Pictures
+    Video          : \\SL-DC-01\RedirectedFolders\user1\Videos
+    PSComputerName : SL-COMPUTER-001
+    RunspaceId     : 1b8bbcc5-80e8-4f5b-b77d-903cb0e74d5a
+
+    UserSID        : S-1-5-21-1728172293-1059764289-3432225222-1112
+    UserName       : user-002
+    Desktop        : C:\Users\user-002\Desktop
+    Documents      : C:\Users\user-002\Documents
+    Music          : C:\Users\user-002\Music
+    Pictures       : C:\Users\user-002\Pictures
+    Video          : C:\Users\user-002\Videos
+    PSComputerName : SL-COMPUTER-002
+    RunspaceId     : 3641923c-9241-4dae-8821-6815a1029dbd
+
+Checks multiple computers for multiple library paths of logged in users.  The -ExcludeAccount param has been used to prevent the Administrator account from being returned.
     .EXAMPLE
         Example
     .EXAMPLE
