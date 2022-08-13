@@ -105,10 +105,26 @@ Checks all computers in Active Directory to see if any logged in users have a re
     [Alias('Get-RedirectedFolderHealth')]
     [OutputType('RFH.RFH')]
     param (
+        <# Specifies the computer on which you want to run the folder redirection check. #>
         [Parameter(Mandatory = $true,
             ValueFromPipeline = $true)]
         [string[]]$ComputerName,
         
+        <# Indicates the user libraries you wish to have inspected, denoted by a single letter per library specified.
+        User libraries are represented by a letter specified in the legend below:
+        D = Desktop
+        O = Documents
+        W = Downloads
+        M = Movies
+        P = Pictures
+        V = Videos
+        F = Favorites
+        A = AppData (roaming)
+        S = Start Meu
+        C = Contacts
+        L = Links
+        H = Searches
+        G = Saved Games #>
         [Parameter(Mandatory = $true,
             HelpMessage = 'Enter the letter corresponding to the library you want checked:
         D = Desktop
@@ -127,8 +143,12 @@ Checks all computers in Active Directory to see if any logged in users have a re
         [ValidateSet("D", "O", "W", "M", "P", "V", "F", "A", "S", "C", "L", "H", "G")]
         [string[]]$Library,
 
+        <# Specifies an account to exclude, such as an administrative account that does not use folder redirections.
+        If the specified account has a logged in session on a machine being checked, this account's libraries will not be returned.
+        Input an account in the form of a 'username' such as JDoe or John.Doe #>
         [string[]]$ExcludeAccount,
 
+        <# Use this param to increase or decrease the concurrency of the function's operation against multiple machines. #>
         [int]$ThrottleLimit = 32
     )
     # immediate break if existing jobs are found
