@@ -28,29 +28,29 @@ function Get-RFH {
     .EXAMPLE
 PS C:\> Get-RFH -ComputerName 'SL-COMPUTER-001' -Library D,O
 
-UserSID        : S-1-5-21-1728172293-1059764289-3432225222-500
-UserName       : Administrator
-Desktop        : C:\Users\Administrator\Desktop
-Documents      : C:\Users\Administrator\Documents
-PSComputerName : SL-COMPUTER-001
-RunspaceId     : c4c1cf68-1710-49ec-80d1-d41c7e236f0b
+    UserSID        : S-1-5-21-1728172293-1059764289-3432225222-500
+    UserName       : Administrator
+    Desktop        : C:\Users\Administrator\Desktop
+    Documents      : C:\Users\Administrator\Documents
+    PSComputerName : SL-COMPUTER-001
+    RunspaceId     : c4c1cf68-1710-49ec-80d1-d41c7e236f0b
 
 This example checks the computer named SL-COMPUTER-001 to retrieve the user's Desktop and Documents path.
     .EXAMPLE
 PS C:\> $comp = @('SL-COMPUTER-001','SL-COMPUTER-002')
 PS C:\> Get-RFH -ComputerName $comp -Library D
 
-UserSID        : S-1-5-21-1728172293-1059764289-3432225222-500
-UserName       : Administrator
-Desktop        : C:\Users\Administrator\Desktop
-PSComputerName : SL-COMPUTER-001
-RunspaceId     : c078795c-b2d5-44df-bd60-daf51e238bcb
+    UserSID        : S-1-5-21-1728172293-1059764289-3432225222-500
+    UserName       : Administrator
+    Desktop        : C:\Users\Administrator\Desktop
+    PSComputerName : SL-COMPUTER-001
+    RunspaceId     : c078795c-b2d5-44df-bd60-daf51e238bcb
 
-UserSID        : S-1-5-21-1728172293-1059764289-3432225222-500
-UserName       : Administrator
-Desktop        : C:\Users\Administrator\Desktop
-PSComputerName : SL-COMPUTER-002
-RunspaceId     : 5d6f6735-dc61-42fb-9b1b-7137b614bb68
+    UserSID        : S-1-5-21-1728172293-1059764289-3432225222-500
+    UserName       : Administrator
+    Desktop        : C:\Users\Administrator\Desktop
+    PSComputerName : SL-COMPUTER-002
+    RunspaceId     : 5d6f6735-dc61-42fb-9b1b-7137b614bb68
 
 This example first declares a collection of computers to check.  The variable storing the collection is then used in the -ComputerName parameter to check the Desktop path of all logged in users for both computers.
     .EXAMPLE
