@@ -88,9 +88,13 @@ PS C:\> Get-RFH -ComputerName $comp -Library O -ExcludeAccount Administrator | S
 
 Retrieves the Documents path for all users except the Administrator for the specified computers.  Output has been sent down the pipeline to only return desired properties.
     .EXAMPLE
-        Example
+Get-RFH -ComputerName "SL-RDS-01" -Library D | Where-Object {$_.Desktop -notlike "\\*"}
+
+Returns any desktop path for all users logged into SL-RDS-01 that are not redirected to a shared location.
     .EXAMPLE
-        Example
+Get-RFH -ComputerName $List -Library D,O,M,P,V,F -ThrottleLimit 100
+
+Checks multiple libraries on a list of computers.  The -ThrottleLimit param has been used to increase the concurrency of the operation from the default 32.
     .EXAMPLE
         Example
     .EXAMPLE
