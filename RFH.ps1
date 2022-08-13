@@ -4,6 +4,29 @@
 
 #>
 function Get-RFH {
+    <#
+    .SYNOPSIS
+        Runs against a computer to check the path of specified user libraries for any user logged into that machine.
+    .DESCRIPTION
+        Runs against a computer to check the path of specified user libraries for any user logged into that machine.
+        This function is a refactored version of its previous state and includes the below changes:
+            - Checks now run in parallel with control for a throttle limit
+            - No dependencies on ActiveDirectory
+            - No dependencies on logged in users
+            - No output-specific code or params for error detection - the user can use the output as needed
+            - Declared specific output type of [RFH.RFH]
+            - Still supports excluding user accounts from the checks
+            - Most computational requirements are executed at each target computer
+    .NOTES
+        Information or caveats about the function e.g. 'This function is not supported in Linux'
+    .LINK
+        Specify a URI to a help page, this will show when Get-Help -Online is used.
+    .EXAMPLE
+        Test-MyTestFunction -Verbose
+        Explanation of the function or its result. You can include multiple examples with additional .EXAMPLE lines
+    #>
+    
+    {0}
     [CmdletBinding()]
     [Alias('Get-RedirectedFolderHealth')]
     [OutputType('RFH.RFH')]
