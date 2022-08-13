@@ -14,6 +14,7 @@ function Get-RFH {
             - No dependencies on ActiveDirectory
             - No dependencies on logged in users
             - Removed params and output types that restricted use cases
+            - Removed the need for multiple parameter sets
             - Removed options for Write-Host
             - Added better verbose messaging
             - Added progress bar
